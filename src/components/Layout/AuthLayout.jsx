@@ -1,0 +1,33 @@
+import React , {useState , useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
+import {useSelector} from 'react-redux'
+
+
+function Protected(
+    {
+        children,
+        authentication = true
+    }
+) {
+    const navigate = useNavigate();
+    const [loader, setLoader] = useState(true)
+    const authStatus = useSelector(state => state.auth.status)
+
+    useEffect(()=>{
+        if(authentication && authStatus !== authentication)
+        {
+            navigate("/login")
+        }else if(!authentication && authStatus !== authentication)
+        {
+            navigate("/")
+        }
+        setLoader(false);
+    },[authStatus, navigate, authentication])
+    //there we protest the route by checking autheticalion
+  
+        return loader ? <h1>Loading...</h1> : <>{children}</>
+        return <> {children}</>
+
+}
+
+export default Protected
