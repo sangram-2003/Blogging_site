@@ -4,18 +4,17 @@ import Gallary1 from '../components/ImageGallary/Gallary1'
 import { Link } from 'react-router-dom'
 import {socialMedia , category} from '../data.js'
 import service from '../appwrite/config.js'
+import {  getRecentPosts} from '../store/postSlice.js'
+import { useDispatch, useSelector } from 'react-redux'
 function Home() {
-const [recentPosts, setRecentPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  console.log("recenet " , recentPosts)
+const dispatch = useDispatch()
+  const {recentPosts , isLoading}=useSelector((state)=>state.posts)
+  console.log("get recent post ", recentPosts , isLoading)
   useEffect(() => {
-    service.getRecentPosts().then((fetchedPosts) => {
-      if (fetchedPosts) {
-        setRecentPosts(fetchedPosts.documents);
-        
-      }
-      setLoading(false);
-    });
+
+      
+      dispatch(getRecentPosts())
+    
   }, []);
 
 const trendingPosts =  recentPosts.filter((post)=> post.trending === "true");
