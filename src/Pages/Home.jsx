@@ -18,7 +18,7 @@ const dispatch = useDispatch()
   }, []);
 
 const trendingPosts =  recentPosts.filter((post)=> post.trending === "true");
-console.log("trending " , trendingPosts);
+
 const slides = [
   {
     image: './ad4.jpg',
@@ -46,8 +46,9 @@ const slides = [
         </ContainerLayout>
 
         <ContainerLayout className='mt-8 px-2'>
-            <UnderContainer01>
-                <GanoLayout02  data={recentPosts}/>
+            <UnderContainer01 >
+             
+                <GanoLayout02  data={recentPosts} loading={isLoading}/>
                 <SideBarLayout>
                     <ProfileCard/>
                     <ListGroup  data={socialMedia}/>

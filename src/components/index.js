@@ -30,8 +30,10 @@ import PostForm from './Post-form/PostForm.jsx'
 import RTE from './RTE.jsx'
 import Select from './Select.jsx'
 import Checkbox from './CheckBox.jsx'
+import LoadingSpinner from './Loading/LoadingSpinner.jsx'
 // 👇 NAMED EXPORTS
 export {
+  LoadingSpinner,
   Checkbox,
   PostForm,
   RTE,

@@ -3,17 +3,18 @@ import HeadlingSection from "../Headling-section/HeadlingSection";
 import Headline from "../Headling-section/Headline";
 import MoreBtn from "../Buttons/MoreBtn";
 import Card01 from "../Cards/Card01";
-
+import LoadingSpinner from "../Loading/LoadingSpinner";
 
 
 function GanoLayout02(
   {
-    data
+    data,
+    loading
   }
 ) {
 
 
-  console.log("gano ", data)
+  console.log("gano ", data,loading)
 	// const post = {
   //   image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg',
   //   alt: 'Mountain Adventure',
@@ -37,8 +38,15 @@ function GanoLayout02(
 					</HeadlingSection>
 				</div>
 				
+        {
+          loading ? (
+          <div className="   col-span-12 grid grid-cols-12 gap-2  ">
+             <div className="col-span-12 h-40 p-2">
+               <LoadingSpinner/>
+               </div>
 
-				<div className="   col-span-12 grid grid-cols-12 gap-2   ">
+         
+          </div>):(<div className="   col-span-12 grid grid-cols-12 gap-2   ">
 					
            {
 
@@ -67,7 +75,10 @@ function GanoLayout02(
           
          
 					
-				</div>
+				</div>)
+        }
+
+
 			</div>
 		</>
 	);
