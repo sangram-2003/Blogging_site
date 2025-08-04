@@ -1,6 +1,7 @@
 
 import { createSlice , createAsyncThunk} from "@reduxjs/toolkit";
 import service  from "../appwrite/config";
+import { Query } from "appwrite";
 
 export const createPost  = createAsyncThunk('createPost', async(postData)=>{
     const res = await service.createPost(postData);
@@ -32,6 +33,11 @@ export const updatePost =  createAsyncThunk('updatePost',async ({ slug, data })=
 export const deletePost = createAsyncThunk('deletePost', async(slug)=>{
     await service.deletePost(slug);
     return slug;
+})
+
+export const getPostsByQuery = createAsyncThunk('getPostsByQuery', async(query)=>{
+    const res = await service.getPostsByQuery(query);
+    return res.documents;
 })
 
 
@@ -66,7 +72,7 @@ const postSlice = createSlice({
             state.posts = action.payload;
         })
         .addCase(getPosts.rejected , (state , action)=>{
-            state.isLoading = false;
+            state.isLoading = true;
             state.isError= action.error.message;
         })
 
@@ -81,7 +87,7 @@ const postSlice = createSlice({
             state.post = action.payload;
         })
         .addCase(getPost.rejected , (state , action)=>{
-            state.isLoading = false;
+            state.isLoading = true;
             state.isError= action.error.message;
         })
         //getRecentPosts
@@ -94,9 +100,21 @@ const postSlice = createSlice({
             state.recentPosts = action.payload;
         })
         .addCase(getRecentPosts.rejected , (state , action)=>{
-            state.isLoading = false;
+            state.isLoading = true;
             state.isError=action.error.message;
         })
+        //get post by custom quries
+         .addCase(getPostsByQuery.pending , (state)=>{
+            state.isLoading=true;
+         } )
+         .addCase(getPostsByQuery.fulfilled , (state,action)=>{
+            state.isLoading = false;
+            state.posts = action.payload;
+         })
+         .addCase(getPostsByQuery.rejected , (state,action)=>{
+            state.isLoading = true;
+            state.isError=action.error.message;
+         })
         //
         .addCase(updatePost.fulfilled , (state , action)=>{
             state.posts = state.posts.map((post) =>

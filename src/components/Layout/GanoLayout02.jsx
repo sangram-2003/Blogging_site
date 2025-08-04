@@ -40,8 +40,8 @@ function GanoLayout02(
 				
         {
           loading ? (
-          <div className="   col-span-12 grid grid-cols-12 gap-2  ">
-             <div className="col-span-12 h-40 p-2">
+          <div className="   col-span-12 grid grid-cols-12 gap-2   ">
+             <div className="col-span-12 h-60 w-full  p-2">
                <LoadingSpinner/>
                </div>
 

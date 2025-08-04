@@ -4,31 +4,20 @@ import service from '../appwrite/config';
 import { Query } from 'appwrite';
 import { Card01, ContainerLayout, Slider } from '../components';
 import parse from 'html-react-parser';
+import { useSelector } from 'react-redux';
 
 function Category() {
   const { category } = useParams();
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+ 
   console.log(category)
-  console.log(posts)
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      setError("");
-      try {
-         service.getPostsByQuery([Query.equal("category", category)])
-        .then((posts)=> setPosts(posts.documents || []) )
-        
-      } catch (err) {
-        console.error("Category page ::", err);
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchPosts();
+const {recentPosts , isLoading,isError}=useSelector((state)=>state.posts)
+
+  useEffect(() => {
+    
+    const recentPostsCate = recentPosts.filter((post)=>post.category===category)
+    setPosts(recentPostsCate)
   }, [category]);
 
   return (
@@ -44,14 +33,14 @@ function Category() {
       />
 
     
-      {loading ? (
+      {isLoading ? (
         <div className="text-center text-gray-500 py-10">Loading posts...</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
           {posts.map((post) => (
             <Card01
               key={post.$id}
-              image={service.getFilePreview(post.featuredImage)}
+              image={post.featuredImage}
               alt={post.title}
               category={post.category}
               title={post.title}

@@ -2,92 +2,45 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../appwrite/config";
 import parse from "html-react-parser";
-import { useSelector } from "react-redux";
-import { Card01, ContainerLayout } from "../components";
-// import Button from "../components/Button"; // Uncomment if using a custom Button
+import { useDispatch, useSelector } from "react-redux";
+import { Card01, ContainerLayout, LoadingSpinner } from "../components";
+import {getPost} from '../store/postSlice'
 
-import { Query } from "appwrite"; // Make sure you have this if using appwrite Query
+
+
+import { Query } from "appwrite"; 
 
 export default function ViewPost() {
-  const [post, setPost] = useState(null);
+
   const [sameTypePost, setSameTypePost] = useState([]);
   const { slug } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userData);
-   console.log(sameTypePost)
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const {recentPosts ,post, isLoading}=useSelector((state)=>state.posts)
 
-  // Fetch post data
-  useEffect(() => {
-    if (slug) {
-      service.getPost(slug).then((postData) => {
-        if (postData) {
-          setPost(postData);
-          service
-            .getPostsByQuery([Query.equal("category", `${postData.category}`)])
-            .then((samePost) => {
-              if (samePost) {
-                setSameTypePost(samePost.documents);
-              }
-            });
-        } else {
-          navigate("/");
-        }
-      });
-    } else {
-      navigate("/");
-    }
-  }, [slug, navigate]);
+  
+  useEffect(()=>{
+     dispatch(getPost(slug))
+     const sameTypePosts = recentPosts.filter((item)=>item.category == post.category);
+     setSameTypePost(sameTypePosts)
+  },[slug])
 
-  // Delete post handler
-  const deletePost = () => {
-    if (!post) return;
-    service.deletePost(post.$id).then((status) => {
-      if (status) {
-        service.deleteFile(post.featuredImage);
-        navigate("/");
-      }
-    });
-  };
+
 
   return post ? (
     <ContainerLayout className="px-2">
       <div className="py-8">
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="w-full flex justify-center mb-4 relative border rounded-xl ">
           {post.featuredImage && (
             <img
               src={service.getFilePreview(post.featuredImage)}
               alt={post.title}
-              className="rounded-xl max-h-[500px] object-cover"
+              className="rounded-xl max-h-[500px] object-cover w-full h-full"
             />
           )}
 
-          {isAuthor && (
-            <div className="absolute right-6 top-6 flex gap-2">
-              {/* Uncomment below if using a custom Button component */}
-              {/* 
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500">Edit</Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button> 
-              */}
-
-              {/* Regular buttons if not using custom Button */}
-              {/* <Link to={`/edit-post/${post.$id}`}>
-                <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
-                  Edit
-                </button>
-              </Link>
-              <button
-                onClick={deletePost}
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-              >
-                Delete
-              </button> */}
-            </div>
-          )}
+      
         </div>
 
         <div className="w-full mb-6">
@@ -137,6 +90,6 @@ export default function ViewPost() {
       </div>
     </ContainerLayout>
   ) : (
-    <div className="text-center py-20 text-gray-500">Loading post...</div>
+    <LoadingSpinner/>
   );
 }
