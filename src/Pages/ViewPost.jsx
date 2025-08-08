@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import { useDispatch, useSelector } from "react-redux";
 import { Card01, ContainerLayout, LoadingSpinner } from "../components";
 import {getOnePost} from '../store/postSlice'
-import {getOnePost} from '../store/postSlice'
+
 
 
 
@@ -69,9 +69,7 @@ useEffect(() => {
         <div className="text-base text-black">
   {typeof post.content === "string" ? parse(post.content) : null}
 </div>
-        <div className="text-base text-black">
-  {typeof post.content === "string" ? parse(post.content) : null}
-</div>
+       
 
         {sameTypePost.length > 1 && (
           <div className="mt-12">
