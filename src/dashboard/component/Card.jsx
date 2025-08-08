@@ -4,7 +4,8 @@ function Card(
     {
         title, 
         number , 
-        image , 
+        image,
+        Icon , 
         className='',
         ...props
     }
@@ -13,8 +14,8 @@ function Card(
         <>
         <div className={` ${className} w-full relative shadow-lg flex gap-2 bg-stone-300/50 h-40 rounded-lg `} {...props}>
          <div className='w-2/6   h-full relative  '>
-              <div className='w-24 sm:w-36 md:w-20 h-28 shadow-lg bg-green-300 absolute -top-5 left-4 rounded-xl'>
-                <img src={image} alt='image' />
+              <div className='w-24 flex justify-center items-center sm:w-36 md:w-20 h-28 shadow-lg bg-green-300 absolute -top-5 left-4 rounded-xl'>
+               {Icon && <Icon size={35} color="black" />}
               </div>
          </div>
          <div className='w-4/6  h-full flex justify-center items-center'>
