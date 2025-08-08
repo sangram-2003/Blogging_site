@@ -12,6 +12,8 @@ function NavBar2({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isNavManuOpen , setIsNavManuOpen]=useState(false);
   const authStatus =  useSelector(state => state.auth.status);
+  const {userData}=useSelector((state)=>state.auth.userData);
+
  const dispatch = useDispatch();
   console.log(authStatus);
   const toggleDropdown = () => {
@@ -115,19 +117,14 @@ function NavBar2({
             {isDropdownOpen && (
               <div className="absolute  right-4 top-16 z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
                 <div className="px-4 py-3">
-                  <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                  <span className="block text-sm text-gray-900 dark:text-white">{userData.name}</span>
+                  <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{userData.email}</span>
                 </div>
                 <ul className="py-2">
                   <li>
                     <NavLink to={`${'/dashboard'}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</NavLink>
                   </li>
-                  <li>
-                    <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</NavLink>
-                  </li>
+                 
                   <li>
                     <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     onClick={logoutHandler}
