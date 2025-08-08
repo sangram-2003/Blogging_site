@@ -7,6 +7,7 @@ import { Card01, ContainerLayout, LoadingSpinner } from "../components";
 import {getOnePost} from '../store/postSlice'
 
 
+
 import { Query } from "appwrite"; 
 
 export default function ViewPost() {
@@ -67,7 +68,7 @@ useEffect(() => {
         <div className="text-base text-black">
   {typeof post.content === "string" ? parse(post.content) : null}
 </div>
-        
+       
 
         {sameTypePost.length > 1 && (
           <div className="mt-12">
