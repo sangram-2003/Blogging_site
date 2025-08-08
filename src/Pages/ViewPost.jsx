@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { useDispatch, useSelector } from "react-redux";
 import { Card01, ContainerLayout, LoadingSpinner } from "../components";
 import {getOnePost} from '../store/postSlice'
+import {getOnePost} from '../store/postSlice'
 
 
 
@@ -20,7 +21,7 @@ export default function ViewPost() {
   const post =useSelector((state)=>state.posts.post)
   const {recentPosts , isLoading}=useSelector((state)=>state.posts)
  
-  console.log("post",post)
+  
  useEffect(() => {
   dispatch(getOnePost(slug));
 }, [slug]);
@@ -65,6 +66,9 @@ useEffect(() => {
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
 
+        <div className="text-base text-black">
+  {typeof post.content === "string" ? parse(post.content) : null}
+</div>
         <div className="text-base text-black">
   {typeof post.content === "string" ? parse(post.content) : null}
 </div>

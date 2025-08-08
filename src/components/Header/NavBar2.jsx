@@ -18,7 +18,7 @@ function NavBar2({
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const logout =  ()=>{
+  const logoutHandle=  ()=>{
        try {
         authService.logout()
         .then(()=>dispatch(logout()))
@@ -126,7 +126,7 @@ function NavBar2({
                   </li>
                   <li>
                     <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    onClick={logout}
+                    onClick={logoutHandle}
                     >Sign out</NavLink>
                   </li>
                 </ul>
