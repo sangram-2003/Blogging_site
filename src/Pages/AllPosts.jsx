@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import service from "../appwrite/config";
 import { Card01, ContainerLayout } from "../components";
 import parse from "html-react-parser";
+import { useSelector } from "react-redux";
 
 export default function AllPosts() {
  
   const {recentPosts , isLoading}=useSelector((state)=>state.posts)
-
+console.log(recentPosts)
   
 
   return (
@@ -18,7 +19,7 @@ export default function AllPosts() {
 
         {isLoading ? (
           <div className="text-center text-gray-500 py-10">Loading posts...</div>
-        ) : posts.length === 0 ? (
+        ) : recentPosts.length === 0 ? (
           <div className="text-center text-gray-500 py-10">No posts available.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

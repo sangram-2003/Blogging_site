@@ -14,7 +14,7 @@ export const getPosts  = createAsyncThunk('getPosts', async()=>{
     console.log("get posts " , res)
     return res.documents;
 })
-export const getPost =  createAsyncThunk('getPost',async (slug)=>{
+export const getOnePost =  createAsyncThunk('getPost',async (slug)=>{
     const res = await service.getPost(slug);
     return res;
 })
@@ -78,15 +78,15 @@ const postSlice = createSlice({
 
         // for getpost
 
-        .addCase(getPost.pending , (state , action)=>{
+        .addCase(getOnePost.pending , (state , action)=>{
             state.isLoading = true
 
         })
-        .addCase(getPost.fulfilled , (state , action )=>{
+        .addCase(getOnePost.fulfilled , (state , action )=>{
             state.isLoading = false ;
             state.post = action.payload;
         })
-        .addCase(getPost.rejected , (state , action)=>{
+        .addCase(getOnePost.rejected , (state , action)=>{
             state.isLoading = true;
             state.isError= action.error.message;
         })
