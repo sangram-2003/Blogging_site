@@ -18,7 +18,7 @@ function NavBar2({
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const logoutHandle=  ()=>{
+  const logoutHandler=  ()=>{
        try {
         authService.logout()
         .then(()=>dispatch(logout()))
@@ -97,7 +97,11 @@ function NavBar2({
             </ul>
           </div>
 
-          <div className=" hidden sm:flex  items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+
+{
+  authStatus && (
+   <div className=" hidden sm:flex  items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               type="button"
               className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -126,13 +130,16 @@ function NavBar2({
                   </li>
                   <li>
                     <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    onClick={logoutHandle}
+                    onClick={logoutHandler}
                     >Sign out</NavLink>
                   </li>
                 </ul>
               </div>
             )}
           </div>
+  )
+}
+          
 
 
 
@@ -194,7 +201,7 @@ function NavBar2({
 
       </NavLink>
            
-       <button onClick={()=>(logout , setIsNavManuOpen(false))} 
+       <button onClick={()=>(logoutHandler , setIsNavManuOpen(false))} 
        
        className="w-60 bg-red-400 h-10 rounded-lg">Logout</button>
     </div>

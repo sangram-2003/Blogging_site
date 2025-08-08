@@ -16,7 +16,7 @@ const Nav = (
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const logout =  ()=>{
+  const logoutHandler =  ()=>{
        try {
         authService.logout()
         .then(()=>dispatch(logout()))
@@ -67,11 +67,11 @@ const Nav = (
                 <ul className="py-2">
                   
                   <li>
-                    <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Web</NavLink>
+                    <NavLink to={"/"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Web</NavLink>
                   </li>
                   <li>
                     <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    onClick={logout}
+                    onClick={logoutHandler}
                     >Sign out</NavLink>
                   </li>
                 </ul>
