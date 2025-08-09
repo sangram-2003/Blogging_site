@@ -13,7 +13,7 @@ function NavBar2({
   const [isNavManuOpen , setIsNavManuOpen]=useState(false);
   const authStatus =  useSelector(state => state.auth.status);
   const {userData}=useSelector((state)=>state.auth.userData);
-
+console.log(userData , "lkjhgf")
  const dispatch = useDispatch();
   console.log(authStatus);
   const toggleDropdown = () => {
@@ -53,11 +53,7 @@ function NavBar2({
       slug: "/posts",
       active: authStatus,
   },
-  {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-  },
+  
   ]
 
   return (

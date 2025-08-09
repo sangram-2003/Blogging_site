@@ -33,8 +33,8 @@ console.log(new Date(date).getMinutes())
           <div className="mb-4 rounded-full bg-cyan-600 py-0.5 px-2.5 text-xs text-white shadow-sm w-20 text-center">
             {category}
           </div>
-          <h6 className="mb-2 text-slate-800 text-xl font-semibold">{title}</h6>
-          <p className="text-slate-600 leading-normal  line-clamp-3 font-light"> {parse(para)}</p>
+          <h6 className="mb-2 text-slate-800 text-xl font-semibold line-clamp-3">{title}</h6>
+          <p className="text-slate-600 leading-normal  line-clamp-4 font-light"> {parse(para)}</p>
         </div>
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center">

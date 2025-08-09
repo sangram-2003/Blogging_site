@@ -45,10 +45,10 @@ function Item({ posts }) {
                         {/* Status + Trending */}
                         <div className="flex flex-wrap gap-4 text-sm justify-center lg:justify-start">
                             <span className={posts.status ? 'text-green-700' : 'text-red-700'}>
-                                {posts.status ? 'Visible' : 'Hidden'}
+                                {posts.status == "true" ? 'Visible' : 'Hidden'}
                             </span>
                             <span className={posts.trending ? 'text-green-700' : 'text-red-700'}>
-                                {posts.trending ? 'Trending' : 'Not Trending'}
+                                {posts.trending =="true" ? 'Trending' : 'Not Trending'}
                             </span>
                             <span className="text-gray-700">{date}</span>
                         </div>

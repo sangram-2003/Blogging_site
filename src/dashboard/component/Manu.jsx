@@ -5,9 +5,9 @@ function Manu() {
     const navigate = useNavigate();
       return (
     <>
-      <div className="flex-col mt-3 -space-y-2">
+      <div className="flex-col mt-3 -space-y-2 px-5">
         <div
-          className="w-full h-12  group hover:bg-pink-400 hover:scale-105 rounded-md py-2 px-8 flex justify-between items-center transition duration-100"
+          className="w-full h-12  group hover:bg-pink-400  rounded-md py-2 px-8 flex justify-between items-center transition duration-100"
           onClick={() => navigate("/dashboard")} // Navigate to Home
         >
           <div className="text-md group-hover:text-black">
