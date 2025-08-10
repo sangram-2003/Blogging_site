@@ -1,15 +1,12 @@
 // GallerySlider.jsx
 import React from "react";
+import { useSelector } from "react-redux";
+import service from "../../appwrite/config";
 
-const images = [
-  "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
-  "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
-];
+
 
 export default function GallerySlider() {
+  const {photos}=useSelector((state)=>state.gallery);
   return (
     <div className="w-full  px-4 py-6">
       <div
@@ -29,15 +26,14 @@ export default function GallerySlider() {
         </style>
 
         <div className="hide-scrollbar  flex gap-4">
-          {images.map((src, index) => (
+          {photos.map((photo, index) => (
             <div
               key={index}
               className="min-w-[14.1rem]  sm:min-w-[300px] h-64 rounded-xl overflow-hidden shadow-md"
             >
               <img
-                src={src}
-                alt={`Gallery ${index}`}
-                className="w-full h-full object-cover"
+                src={service.getFilePreview(photo.galleryImage)}
+                className="w-full h-full"
               />
             </div>
           ))}

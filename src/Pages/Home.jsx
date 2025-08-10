@@ -5,15 +5,20 @@ import { Link } from 'react-router-dom'
 import {socialMedia , category} from '../data.js'
 import service from '../appwrite/config.js'
 import {  getRecentPosts} from '../store/postSlice.js'
+import { getPhotos } from '../store/gallerySlice.js'
 import { useDispatch, useSelector } from 'react-redux'
 function Home() {
 const dispatch = useDispatch()
-  const {recentPosts , isLoading}=useSelector((state)=>state.posts)
+  const {recentPosts , isLoading}=useSelector((state)=>state.posts);
+  const {photos}=useSelector((state)=>state.gallery);
+  console.log("hsjkdlls",photos)
   console.log("get recent post ", recentPosts , isLoading)
   useEffect(() => {
 
       
-      dispatch(getRecentPosts())
+      dispatch(getRecentPosts()),
+
+      dispatch(getPhotos());
     
   }, []);
 
