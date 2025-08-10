@@ -10,7 +10,7 @@ const AllPostDashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const{ userData} =  useSelector(state => state.auth.userData);
+  const userData =  useSelector(state => state.auth.userData)||{};
   console.log(userData.$id,"sd") 
  
   console.log("User same  in all post dashboard ", userData)

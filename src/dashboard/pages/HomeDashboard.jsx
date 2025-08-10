@@ -44,7 +44,7 @@ function HomeDashboard() {
  const [userHiddenPosts ,  setUserHiddenPosts]=useState({});
  const [userVisiblePosts ,  setUserVisiblePosts]=useState({});
 
-    const{ userData} =  useSelector(state => state.auth.userData);
+    const userData =  useSelector(state => state.auth.userData)||{};
     const {recentPosts , loading} =useSelector((state)=>state.posts)
     console.log(userData)
 
