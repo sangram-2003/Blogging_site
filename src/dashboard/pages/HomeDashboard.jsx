@@ -45,15 +45,15 @@ function HomeDashboard() {
  const [userVisiblePosts ,  setUserVisiblePosts]=useState({});
 
     const userData =  useSelector(state => state.auth.userData)||{};
+    console.log(userData.userData.$id, "lkjhgfd")
     const {recentPosts , loading} =useSelector((state)=>state.posts)
     console.log(userData)
-
+ 
     useEffect(()=>{
-        
-
-        if(userData.$id)
+ 
+        if(userData.userData.$id)
         {
-        const yourPosts= recentPosts.filter((post)=>post.userID == userData.$id);
+        const yourPosts= recentPosts.filter((post)=>post.userID == userData.userData.$id);
        const trendingPosts = yourPosts.filter((post)=>post.trending == "true");
        const nonTrendingPosts = yourPosts.filter((post)=>post.trending =="false");
        const hiddenPosts= yourPosts.filter((post)=>post.status =="false");

@@ -113,6 +113,38 @@ async  getRecentPosts() {
 			console.log("Appwrite Serive :: getPosts", error);
 		}
 	}
+  
+	//gallery photo 
+
+   async createGallery ({ userID , galleryImage , title , status})
+{
+	try {
+		return await this.databases.createDocument(
+			conf.appwriteDatabaseId,
+			conf.appwriteGalleryCollectionId,
+		     ID.unique(),
+			{ userID , galleryImage , title , status }
+		);
+	} catch (error) {
+		console.error("Appwrite Service :: createGallery", error);
+		throw error;
+	}
+}
+
+
+async getPhotos()
+{
+	try {
+		return await this.databases.listDocuments(
+			conf.appwriteDatabaseId,
+			conf.appwriteGalleryCollectionId,
+			  [Query.orderDesc("$createdAt")]
+		)
+	} catch (error) {
+		console.log("Appwrite error getPhotos :: ",error)
+	}
+}
+
 
 	//file handling for image
 
