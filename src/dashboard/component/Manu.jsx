@@ -35,6 +35,18 @@ function Manu() {
 
         <div
           className="w-full h-12  group hover:bg-pink-400 hover:scale-105 rounded-md py-2 px-8 flex justify-between items-center transition duration-100"
+          onClick={() => navigate("/dashboard/gallery")} // Navigate to Projects
+        >
+          <div className="text-md group-hover:text-black">
+            {/* <BsFillGearFill className="text-black text-lg  font-bold" /> */}
+          </div>
+          <div className="text-md font-semibold group-hover:text-black">
+            Gallery
+          </div>
+        </div>
+       
+        <div
+          className="w-full h-12  group hover:bg-pink-400 hover:scale-105 rounded-md py-2 px-8 flex justify-between items-center transition duration-100"
           onClick={() => navigate("/dashboard/add-post")} // Navigate to Projects
         >
           <div className="text-md group-hover:text-black">

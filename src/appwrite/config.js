@@ -60,7 +60,7 @@ async updatePost(slug, { title, content, featuredImage, status, userID, category
 			return false;
 		}
 	}
-
+ 
 	async getPost(slug) {
 		try {
 			return await this.databases.getDocument(
@@ -132,6 +132,22 @@ async  getRecentPosts() {
 }
 
 
+async deletePhoto(id) {
+		try {
+			//does not need to return
+			await this.databases.deleteDocument(
+				conf.appwriteDatabaseId,
+				conf.appwriteGalleryCollectionId,
+				id
+			);
+
+			return true; // means deleted
+		} catch (error) {
+			console.log("Appwrite Serive :: deletePhoto", error);
+			return false;
+		}
+	}
+
 async getPhotos()
 {
 	try {
@@ -144,6 +160,19 @@ async getPhotos()
 		console.log("Appwrite error getPhotos :: ",error)
 	}
 }
+
+async getPhotosByQuery(queries) {
+		// which post are active , indexing need when the use query
+		try {
+			return await this.databases.listDocuments(
+				conf.appwriteDatabaseId,
+				conf.appwriteGalleryCollectionId,
+				queries
+			);
+		} catch (error) {
+			console.log("Appwrite Serive getPhotos by query ", error);
+		}
+	}
 
 
 	//file handling for image

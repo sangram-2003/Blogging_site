@@ -1,12 +1,20 @@
 // GallerySlider.jsx
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import service from "../../appwrite/config";
+import { getPhotos } from "../../store/gallerySlice";
 
 
 
 export default function GallerySlider() {
-  const {photos}=useSelector((state)=>state.gallery);
+ const dispatch = useDispatch();
+
+  const { photos, isLoading, isError } = useSelector((state) => state.gallery);
+
+  useEffect(() => {
+    dispatch(getPhotos());
+  }, [dispatch]);
+console.log(photos , "----------------------------------")
   return (
     <div className="w-full  px-4 py-6">
       <div

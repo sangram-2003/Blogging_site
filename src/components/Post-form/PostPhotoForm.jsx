@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { Checkbox, CommanBtn, Input, RTE, Select, Upload } from ".."; // .. => ./index.js
 import service from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createGallery } from "../../store/gallerySlice";
 function PostPhotoForm({ post }) {
 	const { register, handleSubmit, watch, setValue, control, getValues } =
 		useForm(
@@ -20,7 +21,7 @@ function PostPhotoForm({ post }) {
 				},
 			}
 		);
-
+    const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const userData = useSelector((state) => state.auth.userData);
 
@@ -33,10 +34,12 @@ function PostPhotoForm({ post }) {
 			if (file) {
 				const fileId = file.$id;
 				data.galleryImage = fileId;
-				const dbPost = await service.createGallery({
+				dispatch(createGallery({
 					...data,
 					userID: userData.userData.$id,
-				});
+				})).then(()=>{
+					navigate("/dashboard/gallery")
+				})
 				
 			}
 		};

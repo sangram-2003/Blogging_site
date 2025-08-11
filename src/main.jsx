@@ -19,6 +19,7 @@ import Dashboard from './dashboard/Dashboard.jsx'
 import AllPostDashboard from './dashboard/pages/AllPostDashboard.jsx'
 import HomeDashboard from './dashboard/pages/HomeDashboard.jsx'
 import AddPhoto from './dashboard/pages/AddPhoto.jsx'
+import Allphoto from './dashboard/pages/Allphoto.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -129,6 +130,16 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout authentication>
             <AddPhoto/>
+          </AuthLayout>
+        )
+      },
+
+      ,
+      {
+        path: "/dashboard/gallery",
+        element: (
+          <AuthLayout authentication>
+            <Allphoto/>
           </AuthLayout>
         )
       },

@@ -112,7 +112,7 @@ const postSlice = createSlice({
             state.posts = action.payload;
          })
          .addCase(getPostsByQuery.rejected , (state,action)=>{
-            state.isLoading = true;
+            state.isLoading = false;
             state.isError=action.error.message;
          })
         //
