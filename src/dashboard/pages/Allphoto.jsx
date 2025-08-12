@@ -35,7 +35,7 @@ function Allphoto() {
         <div className="w-full h-auto">
       <h1 className="text-2xl pt-2 pb-8 font-semibold ">All Posts</h1>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {
+      { photos.length == 0 ?(<h1>no available photos</h1>):(
         photos.map((photo, index)=>(
           
           <div className='relative h-auto  '>
@@ -47,7 +47,7 @@ function Allphoto() {
         onClick={()=>handleDeletePhoto(photo.$id)}
         >Delete</button>
           </div>
-    </div>
+    </div>)
         ))
       }
       </div>

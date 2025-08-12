@@ -4,7 +4,7 @@ import service from '../../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function Item({ posts }) {
+function Item({ posts , onDelete }) {
     const navigate = useNavigate();
 
     if (!posts) return null;
@@ -18,9 +18,10 @@ function Item({ posts }) {
         service.deletePost(posts.$id).then((status) => {
             if (status) {
                 service.deleteFile(posts.featuredImage);
-                navigate('/');
+                onDelete();
             }
         });
+        
     };
 
     return (

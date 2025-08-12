@@ -14,9 +14,9 @@ const Sidebar = () => {
         <Manu />
 
         <div className="absolute w-full bottom-4 flex justify-center items-center">
-          <button className="text-xl font-bold bg-pink-400 w-10/12 h-12 text-black rounded-md">
+          {/* <button className="text-xl font-bold bg-pink-400 w-10/12 h-12 text-black rounded-md">
             Logout
-          </button>
+          </button> */}
         </div>
       </div>
     </>
