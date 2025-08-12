@@ -72,7 +72,7 @@ function PostPhotoForm({ post }) {
 
 				<form onSubmit={handleSubmit(submit)} className="flex-col space-y-4 flex-wrap w-5/6 px-10 py-10 rounded-xl bg-black/20  justify-center items-center ">
 				<div className="w-full ">
-                    <h1 className="text-center text-4xl font-bold pb-5 w-full border-b-2 inline-block ">Create a new post </h1>
+                    <h1 className="text-center text-4xl font-bold pb-5 w-full border-b-2 inline-block ">Upload a new photo </h1>
 				</div>
 
 				<div className="w-full px-2 flex-col">
