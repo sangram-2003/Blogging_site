@@ -60,8 +60,8 @@ console.log("kjhgfdsdfghjkl", userData)
 
   return (
     <>
-      <nav className={`${className}  sm:px-5  md:px-10 lg:px-15 border-b w-full mb-1  border-gray-200 dark:bg-gray-900`}>
-        <div className="w-full  flex  items-center justify-between mx-auto p-4">
+      <nav className={`${className}  sm:px-5  md:px-10 lg:px-15 border-b w-full mb-1  border-gray-200  bg-white`}>
+        <div className="w-full bg-white  flex  items-center justify-between mx-auto p-4">
           <NavLink to="#" className="flex  items-center space-x-3 rtl:space-x-reverse">
            
           
