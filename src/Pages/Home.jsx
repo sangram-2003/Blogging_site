@@ -53,7 +53,7 @@ const slides = [
         <ContainerLayout className='mt-8 px-2'>
             <UnderContainer01 >
              
-                <GanoLayout02  data={recentPosts} loading={isLoading}/>
+                <GanoLayout02  data={recentPosts} title="Recent Posts" loading={isLoading}/>
                 <SideBarLayout>
                     <ProfileCard/>
                     <ListGroup  data={socialMedia}/>
@@ -66,7 +66,7 @@ const slides = [
         </ContainerLayout>
          <ContainerLayout className='mt-8 px-2'>
             <UnderContainer01>
-                <GanoLayout02 data={trendingPosts} loading={isLoading} />
+                <GanoLayout02 data={trendingPosts} title="Trending Posts" loading={isLoading} />
                 <SideBarLayout>
                     <NotificationForm/>
                     <div className='my-3 w-full '>

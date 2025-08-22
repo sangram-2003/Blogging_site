@@ -9,7 +9,8 @@ import LoadingSpinner from "../Loading/LoadingSpinner";
 function GanoLayout02(
   {
     data,
-    loading
+    loading,
+    title
   }
 ) {
 
@@ -33,7 +34,7 @@ function GanoLayout02(
 			<div className=" w-full md:w-9/12 h-full  grid-cols-12 grid gap-2  ">
 				<div className="col-span-12  row-start-1">
 					<HeadlingSection>
-						<Headline title={"Trending "} />
+						<Headline title={${title}} />
 						<MoreBtn title={"More"} className="bg-none"/>
 					</HeadlingSection>
 				</div>
