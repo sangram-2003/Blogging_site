@@ -33,7 +33,7 @@ function GanoLayout02(
 			<div className=" w-full md:w-9/12 h-full  grid-cols-12 grid gap-2  ">
 				<div className="col-span-12  row-start-1">
 					<HeadlingSection>
-						<Headline title={"Explore place"} />
+						<Headline title={"Trending "} />
 						<MoreBtn title={"More"} className="bg-none"/>
 					</HeadlingSection>
 				</div>
